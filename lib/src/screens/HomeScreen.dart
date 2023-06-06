@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import '../components/HeaderComponents.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  List<String> listdata = [
+    "All",
+  ];
+  String img = "logo.png";
   drawer(BuildContext context) {
     Widget cancelButton = TextButton(
       child: Text("Cancel"),
@@ -92,6 +95,7 @@ class HomeScreen extends StatelessWidget {
                   color: Color.fromARGB(255, 156, 7, 255),
                 ),
                 Container(
+                  child: Image.asset('assets/images/$img'),
                   height: 300,
                   color: Color.fromARGB(255, 255, 226, 7),
                 )
