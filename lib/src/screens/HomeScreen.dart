@@ -94,28 +94,22 @@ class HomeScreen extends StatelessWidget {
         child: Column(children: [
           Container(
             height: 100,
-            color: Colors.black,
             child: Container(
               height: 100,
               margin: EdgeInsets.only(top: 30),
-              color: Color.fromARGB(255, 233, 6, 6),
               child: TextField(
-                  //editing controller of this TextField
                   decoration: const InputDecoration(
-                      icon: Icon(Icons.calendar_today), //icon of text field
-                      labelText: "Enter Date" //label text of field
-                      ),
-                  readOnly: true, // when true user cannot edit text
+                      icon: Icon(Icons.calendar_today),
+                      labelText: "Enter Date"),
+                  readOnly: true,
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(
                         context: context,
-                        initialDate: DateTime.now(), //get today's date
-                        firstDate: DateTime(
-                            2000), //DateTime.now() - not to allow to choose before today.
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
                         lastDate: DateTime(2101));
                     if (pickedDate != null) {
-                      print(
-                          pickedDate); //get the picked date in the format => 2022-07-04 00:00:00.000
+                      print(pickedDate);
                     } else {
                       print("Date is not selected");
                     }
@@ -126,6 +120,18 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(children: [
+                Container(
+                  height: 300,
+                  color: Color.fromARGB(255, 40, 255, 7),
+                  child:
+                  floatingActionButton:FloatingActionButton.extended(  
+        onPressed: () {},  
+        icon: Icon(Icons.save),  
+        label: Text("Save"),  
+      ), 
+                    
+                
+                ),
                 Container(
                   height: 300,
                   color: Color.fromARGB(255, 40, 255, 7),
