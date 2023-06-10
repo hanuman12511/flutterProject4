@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import '../components/HeaderComponents.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   List<String> listdata = [
     "All",
   ];
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
+
+  static final _widgetOptions = <Widget>[
+    Container(
+      height: 300,
+      color: Colors.amber,
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: 200,
+          child: Card(
+            color: Color.fromARGB(255, 85, 255, 7),
+            child: Text("datatitle"),
+          ),
+        ),
+      ),
     ),
     Text(
       'Index 1: Business',
@@ -19,9 +37,9 @@ class HomeScreen extends StatelessWidget {
   ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
-    /* setState(() {
+    setState(() {
       _selectedIndex = index;
-    }); */
+    });
   }
 
   String img = "logo.png";
@@ -57,7 +75,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   dateController() {}
-  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -93,6 +111,9 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
+            child: _widgetOptions.elementAt(_selectedIndex),
+          )
+          /*   Container(
             height: 100,
             child: Container(
               height: 100,
@@ -115,22 +136,14 @@ class HomeScreen extends StatelessWidget {
                     }
                   }),
             ),
-          ),
-          Container(
+          ), */
+          /*   Container(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(children: [
                 Container(
                   height: 300,
                   color: Color.fromARGB(255, 40, 255, 7),
-                  child:
-                  floatingActionButton:FloatingActionButton.extended(  
-        onPressed: () {},  
-        icon: Icon(Icons.save),  
-        label: Text("Save"),  
-      ), 
-                    
-                
                 ),
                 Container(
                   height: 300,
@@ -145,8 +158,8 @@ class HomeScreen extends StatelessWidget {
                           image: AssetImage('assets/images/logo.png'),
                         ),
                       )),
-                ),
-                Container(
+                ), 
+            Container(
                   height: 300,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -216,7 +229,7 @@ class HomeScreen extends StatelessWidget {
                 )
               ]),
             ),
-          )
+          ) */
         ]),
       ),
       bottomNavigationBar: BottomNavigationBar(
