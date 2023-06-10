@@ -28,11 +28,31 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     ),
-    Text(
-      'Index 1: Business',
+    Container(
+      height: 300,
+      color: Color.fromARGB(255, 7, 222, 255),
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: 200,
+          child: Card(
+            color: Color.fromARGB(255, 85, 255, 7),
+            child: Text("businees"),
+          ),
+        ),
+      ),
     ),
-    Text(
-      'Index 2: School',
+    Container(
+      height: 300,
+      color: Color.fromARGB(255, 255, 7, 7),
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: 200,
+          child: Card(
+            color: Color.fromARGB(255, 85, 255, 7),
+            child: Text("school"),
+          ),
+        ),
+      ),
     ),
   ];
   int _selectedIndex = 0;
