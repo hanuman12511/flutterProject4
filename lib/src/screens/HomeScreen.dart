@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../components/HeaderComponents.dart';
+import '../components/HomeComponent.dart';
+import '../components/ProductListComponent.dart';
+import '../components/CartComponent.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,45 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   static final _widgetOptions = <Widget>[
-    Container(
-      height: 300,
-      color: Colors.amber,
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: 200,
-          child: Card(
-            color: Color.fromARGB(255, 85, 255, 7),
-            child: Text("datatitle"),
-          ),
-        ),
-      ),
-    ),
-    Container(
-      height: 300,
-      color: Color.fromARGB(255, 7, 222, 255),
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: 200,
-          child: Card(
-            color: Color.fromARGB(255, 85, 255, 7),
-            child: Text("businees"),
-          ),
-        ),
-      ),
-    ),
-    Container(
-      height: 300,
-      color: Color.fromARGB(255, 255, 7, 7),
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: 200,
-          child: Card(
-            color: Color.fromARGB(255, 85, 255, 7),
-            child: Text("school"),
-          ),
-        ),
-      ),
-    ),
+    HomeComponent(),
+    ProductListComponent(),
+    CartComponent(),
   ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -259,12 +226,12 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.view_list),
+            label: 'List',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.add_shopping_cart),
+            label: 'Cart',
           ),
         ],
         currentIndex: _selectedIndex,
