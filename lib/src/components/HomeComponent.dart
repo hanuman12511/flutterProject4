@@ -26,17 +26,26 @@ class HomeComponent extends StatelessWidget {
                   return Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.amber,
-                    ),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 4,
+                              color: Color.fromARGB(255, 178, 177, 177),
+                              offset: Offset(5, 2)),
+                        ],
+                        color: Color.fromARGB(255, 253, 253, 251),
+                        border: Border.all(
+                            color: Color.fromARGB(255, 216, 216, 216),
+                            width: 1)),
                     child: Column(children: [
                       Container(
                         width: 200,
                         height: 130,
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: EdgeInsets.only(top: 5),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
-                              image: AssetImage("assets/images/img.jpg"),
+                              image: AssetImage("assets/images/img3.jpg"),
                               fit: BoxFit.cover),
                         ),
                         child: Row(children: [Text("data")]),
@@ -50,7 +59,8 @@ class HomeComponent extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: EdgeInsets.only(top: 5),
+                        padding: EdgeInsets.symmetric(horizontal: 5),
                         child: Text(
                           "Get some protein int a vegan",
                           style: TextStyle(
