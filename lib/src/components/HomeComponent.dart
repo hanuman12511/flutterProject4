@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeComponent extends StatelessWidget {
-  const HomeComponent({super.key});
+  dynamic Function()? btn;
+  HomeComponent({super.key, this.btn});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class HomeComponent extends StatelessWidget {
                     child: Column(children: [
                       Container(
                         width: 200,
-                        height: 130,
+                        height: 100,
                         margin: EdgeInsets.only(top: 5),
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
@@ -78,7 +79,10 @@ class HomeComponent extends StatelessWidget {
                                 child: Text("\$39"),
                               ),
                               Container(
-                                child: Icon(Icons.add_shopping_cart),
+                                child: TextButton(
+                                  onPressed: btn,
+                                  child: Icon(Icons.add_shopping_cart),
+                                ),
                               )
                             ]),
                       ),

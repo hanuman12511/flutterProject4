@@ -3,6 +3,8 @@ import '../components/HeaderComponents.dart';
 import '../components/HomeComponent.dart';
 import '../components/ProductListComponent.dart';
 import '../components/CartComponent.dart';
+import 'DetailsScreen.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,16 +14,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  _getData() async {
+    final response =
+        await http.get(Uri.parse('http://ankursingh.xyz/api/productshow.php'));
+
+    if (response.statusCode == 200) {
+      print(response.body);
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+
+  expenses(dynamic n) {
+    print("expenses${n}");
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => DetailsScreen(name: n)));
+
+    setState(() {});
+  }
+
   @override
   List<String> listdata = [
     "All",
   ];
 
-  static final _widgetOptions = <Widget>[
-    HomeComponent(),
-    ProductListComponent(),
-    CartComponent(),
-  ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -32,21 +53,30 @@ class _HomeScreenState extends State<HomeScreen> {
   String img = "logo.png";
   drawer(BuildContext context) {
     Widget cancelButton = TextButton(
-      child: Text("Cancel"),
+      child: Text("No"),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Continue"),
+      child: Text("Yes"),
       onPressed: () {},
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text(
-          "Would you like to continue learning how to use Flutter alerts?"),
+      backgroundColor: Color.fromARGB(255, 255, 193, 7),
+      title: TextButton(
+        onPressed: () => {},
+        child: Icon(Icons.accessible_forward_sharp),
+      ),
+      content: Container(
+        margin: EdgeInsets.only(bottom: 0),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * .3,
+        color: Color.fromARGB(255, 255, 193, 7),
+        child: Text("Pls Login and after continue.. Enter 'Yes' or 'No"),
+      ),
       actions: [
         cancelButton,
         continueButton,
@@ -64,6 +94,11 @@ class _HomeScreenState extends State<HomeScreen> {
   dateController() {}
 
   Widget build(BuildContext context) {
+    final _widgetOptions = <Widget>[
+      HomeComponent(btn: () => expenses("i")),
+      ProductListComponent(),
+      CartComponent(),
+    ];
     return Scaffold(
       appBar: AppBar(
           leading: TextButton(
