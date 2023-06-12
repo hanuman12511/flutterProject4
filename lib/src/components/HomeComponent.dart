@@ -60,7 +60,7 @@ class HomeComponent extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 5),
+                        margin: EdgeInsets.only(top: 5, bottom: 10),
                         padding: EdgeInsets.symmetric(horizontal: 5),
                         child: Text(
                           "Get some protein int a vegan",
@@ -70,7 +70,12 @@ class HomeComponent extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10),
+                        width: MediaQuery.of(context).size.width * .5,
+                        height: 2,
+                        color: Color.fromARGB(255, 241, 241, 241),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 1),
                         padding: EdgeInsets.symmetric(horizontal: 5),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
