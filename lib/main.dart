@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import './src/screens/HomeScreen.dart';
+import './src/screens/ApiMode/Home.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'dart:async';
 
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(
           seconds: 8,
-          navigateAfterSeconds: HomeScreen(),
+          navigateAfterSeconds: Home(),
+          /* navigateAfterSeconds: HomeScreen(), */
           photoSize: 100,
           image: Image.asset("assets/images/img.jpg", fit: BoxFit.cover),
           backgroundColor: Colors.blue,
