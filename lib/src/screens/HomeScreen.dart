@@ -5,6 +5,9 @@ import '../components/ProductListComponent.dart';
 import '../components/CartComponent.dart';
 import 'DetailsScreen.dart';
 import 'package:http/http.dart' as http;
+import 'my_header_drawer.dart';
+import 'dashboard.dart';
+import 'contacts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -92,21 +95,94 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   dateController() {}
+  var currentPage = DrawerSection.dashboard;
+  Widget MyOrawerList() {
+    return Container(
+      padding: EdgeInsets.only(
+        top: 15,
+      ),
+      child: Column(children: [
+        menuItem(1, "DashBoard", Icons.dashboard_outlined,
+            currentPage == DrawerSection.dashboard ? true : false),
+        menuItem(2, "contacts", Icons.people_alt_outlined,
+            currentPage == DrawerSection.contacts ? true : false),
+      ]),
+    );
+  }
+
+  Widget menuItem(int id, String title, IconData icon, bool selected) {
+    return Material(
+      color: selected ? Colors.grey[300] : Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.pop(context);
+          setState(() {
+            if (id == 1) {
+              currentPage = DrawerSection.dashboard;
+            } else if (id == 2) {
+              currentPage = DrawerSection.contacts;
+            } else if (id == 3) {
+              currentPage = DrawerSection.events;
+            } else if (id == 4) {
+              currentPage = DrawerSection.notes;
+            }
+          });
+        },
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Icon(
+                  icon,
+                  size: 20,
+                  color: Colors.black,
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  title,
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget build(BuildContext context) {
+    var container;
+    if (currentPage == DrawerSection.dashboard) {
+      container = DashboardPage();
+    } else if (currentPage == DrawerSection.contacts) {
+      container = Contants();
+    }
     final _widgetOptions = <Widget>[
       HomeComponent(btn: () => expenses("i")),
       ProductListComponent(),
       CartComponent(),
     ];
     return Scaffold(
+      drawer: Drawer(
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            MyHeaderDrawer(),
+            MyOrawerList(),
+          ],
+        )),
+      ),
       appBar: AppBar(
+          /* 
           leading: TextButton(
               onPressed: () => drawer(context),
               child: Icon(
                 Icons.menu,
                 color: Colors.amber,
-              )),
+              )), */
           title: Text("Hi Hanuman"),
           actions: [
             Container(
@@ -130,12 +206,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ]),
-      body: SingleChildScrollView(
+      body: container,
+
+      /*  SingleChildScrollView(
         child: Column(children: [
           Container(
             child: _widgetOptions.elementAt(_selectedIndex),
-          )
-          /*   Container(
+          ) */
+      /*   Container(
             height: 100,
             child: Container(
               height: 100,
@@ -159,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
             ),
           ), */
-          /*   Container(
+      /*   Container(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(children: [
@@ -252,8 +330,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
             ),
           ) */
-        ]),
-      ),
+      /*  ] ), ), */
+
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -339,3 +417,13 @@ class HomeScreen extends StatelessWidget {
   }
 }
  */
+enum DrawerSection {
+  dashboard,
+  contacts,
+  events,
+  notes,
+  settings,
+  notifications,
+  privacy_policy,
+  send_feedback,
+}

@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(
           seconds: 8,
-          navigateAfterSeconds: Home(),
-          /* navigateAfterSeconds: HomeScreen(), */
+          /* navigateAfterSeconds: Home(), */
+          navigateAfterSeconds: HomeScreen(),
           photoSize: 100,
           image: Image.asset("assets/images/img.jpg", fit: BoxFit.cover),
           backgroundColor: Colors.blue,
